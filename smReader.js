@@ -1,14 +1,17 @@
-//Proprietary script to convert Stepmania SM files to JSON files usable in faerie.FM
+//Proprietary script to convert Stepmania SM files to JSON objects usable in faerie.FM
 
 //globals
 var fs = require('fs');
 var filePath = process.argv[2];
+var path = require('path');
+var fileName = path.basename(filePath, '.sm');
 var noteSection = false;
 var doubleSection = false;
 var beginnerSong = false;
 var beginnerNotes = [];
 var mediumNotes = [];
-var fileData, splitData
+var beginnerBox=[];
+var fileData, splitData, BPM, linePos, lineTotal, measureNum, measureLength, noteTime;
  
 
 
@@ -58,9 +61,56 @@ for(var i=0; i<arrayLength; i++){
 
 console.log(beginnerNotes);
 
+function splitNotes(){
+
+  for(var i=0; i<beginnerNotes.length; i++){
+    var currentString = beginnerNotes[i];
+    var beginnerSplit = currentString.split("\r\n");
+    beginnerBox.push(beginnerSplit);
+  }
+ 
+  console.log(beginnerBox);
+}
+
+splitNotes();
+
+
+//Convert Data to actual times here
+
+//BPM, measureLength, linePos, lineTotal, measureNum
+
+
+
+function getMeasureLength(){
+  
+}
+
+measureLength = (60/BPM)*4;
+noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
+
+
 //Error Messages go here
 if(noteSection=false){
   console.log("Notes section not found!");
 }
 
 //Write then data to a new file
+
+//format for the data
+var obj = {
+  greenDust:{
+    name: 'greenDust',
+    quantity: quantity,
+    animated: false,
+    frames: undefined,
+    x:[],
+    y:[],
+    ix:[],
+    iy:[]
+  }
+}
+
+var JSONobj = JSON.stringify(obj);
+
+var inData = fileName + " = " + JSONobj;
+
