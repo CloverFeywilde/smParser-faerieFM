@@ -11,6 +11,7 @@ var beginnerSong = false;
 var beginnerNotes = [];
 var mediumNotes = [];
 var beginnerBox=[];
+var titleBox=[];
 var fileData, splitData, BPM, linePos, lineTotal, measureNum, measureLength, noteTime;
  
 
@@ -29,6 +30,18 @@ for(var i=0; i<arrayLength; i++){
   if(splitData[i]== '----------------\r\n#NOTES:\r\n'){
     console.log("Notes section found...");
     noteSection = true;   
+  }
+  else if(i==2){
+    var titleData = splitData[i];
+    titleBox = titleData.split("\r\n");
+    for(var i=0; i<titleBox.length; i++){
+      var bpmBox = titleBox[i];
+      if(bpmBox.indexOf("BPMS") >= 0){
+        var bpmBoxSplit = bpmBox.split("=");
+        BPM = parseInt(bpmBoxSplit[1]);
+        console.log("BPM found: " + BPM);
+      }
+    }
   }
   else if(splitData[i]=='dance-double:\r\n' && noteSection==true){
     console.log("Doubles section found...");
@@ -80,12 +93,13 @@ splitNotes();
 //BPM, measureLength, linePos, lineTotal, measureNum
 
 
-
-function getMeasureLength(){
-  
+function getMeasureLength(){    
+  measureLength = (60/BPM)*4;
 }
+getMeasureLength();
 
-measureLength = (60/BPM)*4;
+
+
 noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
 
 
