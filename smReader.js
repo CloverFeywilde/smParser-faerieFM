@@ -98,7 +98,28 @@ function getMeasureLength(){
 }
 getMeasureLength();
 
-
+function getNoteTime(){
+  for(i=0; i<beginnerBox.length; i++){
+    for(j=1; j<beginnerBox[i].length-2; j++){
+      linePos++; 
+      lineTotal = beginnerBox[i].length-2;
+      measureNum = parseInt(beginnerBox[i][0]);
+      if(beginnerBox[i][j].indexOf("1")>=0){
+        //calculate y time
+        noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
+        obj['greenDust']['iy'].push(noteTime);
+        
+        //calculate x position
+        var ix
+        switch(beginnerBox[i][j]){
+          case '10000000':
+            ix = 50;
+            break;
+        }
+      }
+    }
+  }
+}
 
 noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
 
@@ -114,7 +135,7 @@ if(noteSection=false){
 var obj = {
   greenDust:{
     name: 'greenDust',
-    quantity: quantity,
+    quantity: 25,
     animated: false,
     frames: undefined,
     x:[],
