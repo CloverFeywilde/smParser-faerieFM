@@ -22,6 +22,7 @@ var fs = require('fs');
 var filePath = process.argv[2];
 var path = require('path');
 var fileName = path.basename(filePath, '.sm');
+var outFile = path.join("levels" + '.json');
 var noteSection = false;
 var doubleSection = false;
 var beginnerSong = false;
@@ -171,5 +172,8 @@ if(noteSection=false){
 
 var JSONobj = JSON.stringify(obj);
 
-var inData = fileName + " = " + JSONobj;
+var inData = "\r\n" + "var " + fileName + " = " + JSONobj;
 
+fs.appendFileSync(outFile, inData, 'utf-8');
+
+ 
