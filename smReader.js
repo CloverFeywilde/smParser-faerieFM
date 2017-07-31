@@ -1,5 +1,22 @@
 //Proprietary script to convert Stepmania SM files to JSON objects usable in faerie.FM
 
+//Format for the Output Data
+var obj = {
+  greenDust:{
+    name: 'greenDust',
+    quantity: 25,
+    animated: false,
+    frames: undefined,
+    x:[],
+    y:[],
+    ix:[],
+    iy:[]
+  }
+}
+
+
+
+
 //globals
 var fs = require('fs');
 var filePath = process.argv[2];
@@ -12,7 +29,8 @@ var beginnerNotes = [];
 var mediumNotes = [];
 var beginnerBox=[];
 var titleBox=[];
-var fileData, splitData, BPM, linePos, lineTotal, measureNum, measureLength, noteTime;
+var linePos = 0;
+var fileData, splitData, BPM, lineTotal, measureNum, measureLength, noteTime;
  
 
 
@@ -100,6 +118,7 @@ getMeasureLength();
 
 function getNoteTime(){
   for(i=0; i<beginnerBox.length; i++){
+    linePos = 0;
     for(j=1; j<beginnerBox[i].length-2; j++){
       linePos++; 
       lineTotal = beginnerBox[i].length-2;
@@ -115,13 +134,32 @@ function getNoteTime(){
           case '10000000':
             ix = 50;
             break;
-        }
+          case '01000000':
+            ix = 150;
+            break;
+          case '00100000':
+            ix = 250;
+            break;
+          case '00010000':
+            ix = 350;
+            break;
+          case '00001000':
+            ix = 450;
+            break;
+          case '00000100':
+            ix = 550;
+            break;
+          case '00000010':
+            ix = 650;
+            break;
+        } 
+        obj['greenDust']['ix'].push(ix);
       }
     }
   }
 }
-
-noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
+getNoteTime();
+console.log(obj);
 
 
 //Error Messages go here
@@ -130,20 +168,6 @@ if(noteSection=false){
 }
 
 //Write then data to a new file
-
-//format for the data
-var obj = {
-  greenDust:{
-    name: 'greenDust',
-    quantity: 25,
-    animated: false,
-    frames: undefined,
-    x:[],
-    y:[],
-    ix:[],
-    iy:[]
-  }
-}
 
 var JSONobj = JSON.stringify(obj);
 
