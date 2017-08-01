@@ -172,7 +172,7 @@ if(noteSection=false){
 
 var JSONobj = JSON.stringify(obj);
 
-var inData = "\r\n" + "var " + fileName + " = " + JSONobj;
+var inData = "\r\n" + "var " + fileName + " = " + "'" + JSONobj + "'";
 
 fs.appendFileSync(outFile, inData, 'utf-8');
 
