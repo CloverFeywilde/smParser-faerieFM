@@ -5,8 +5,8 @@ var obj = {
   greenDust:{
     name: 'greenDust',
     quantity: 25,
-    animated: false,
-    frames: undefined,
+    animated: true,
+    frames: 3,
     x:[],
     y:[],
     ix:[],
