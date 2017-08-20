@@ -50,11 +50,12 @@ for(var i=0; i<arrayLength; i++){
     console.log("Notes section found...");
     noteSection = true;   
   }
-  else if(i==2){
+  
+  else if(i==1){
     var titleData = splitData[i];
     titleBox = titleData.split("\r\n");
-    for(var i=0; i<titleBox.length; i++){
-      var bpmBox = titleBox[i];
+    for(var k=0; k<titleBox.length; k++){
+      var bpmBox = titleBox[k];
       if(bpmBox.indexOf("BPMS") >= 0){
         var bpmBoxSplit = bpmBox.split("=");
         BPM = parseInt(bpmBoxSplit[1]);
@@ -62,6 +63,7 @@ for(var i=0; i<arrayLength; i++){
       }
     }
   }
+  
   else if(splitData[i]=='dance-double:\r\n' && noteSection==true){
     console.log("Doubles section found...");
     doubleSection = true;
@@ -90,6 +92,13 @@ for(var i=0; i<arrayLength; i++){
     mediumSong = false;
   }
 }
+
+
+//Error Messages go here
+if(noteSection=false){
+  console.log("Notes section not found!");
+}
+
 
 console.log(beginnerNotes);
 
@@ -120,7 +129,7 @@ getMeasureLength();
 function getNoteTime(){
   for(i=0; i<beginnerBox.length; i++){
     linePos = 0;
-    for(j=1; j<beginnerBox[i].length-2; j++){
+    for(j=1; j<=beginnerBox[i].length-2; j++){
       linePos++; 
       lineTotal = beginnerBox[i].length-2;
       measureNum = parseInt(beginnerBox[i][0]);
