@@ -2,6 +2,7 @@
 
 //Format for the Output Data
 var obj = {
+  bpm: 0,
   greenDust:{
     name: 'greenDust',
     quantity: 25,
@@ -168,6 +169,7 @@ function getNoteTime(){
     }
   }
 }
+obj['bpm'] = BPM;
 getNoteTime();
 console.log(obj);
 
