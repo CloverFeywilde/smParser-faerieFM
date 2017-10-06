@@ -12,6 +12,16 @@ var obj = {
     y:[],
     ix:[],
     iy:[]
+  },
+  wall: {
+    name: 'wall',
+    quantity: 15,
+    animated: false,
+    frames: undefined,
+    x: [],
+    y: [],
+    ix: [],
+    iy: []
   }
 }
 
@@ -166,8 +176,40 @@ function getNoteTime(){
         } 
         obj['greenDust']['ix'].push(ix);
       }
+        else if(beginnerBox[i][j].indexOf("M")>=0){
+        //calculate y time of the Wall obstacle
+        noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
+        obj['wall']['iy'].push(noteTime);
+        
+        //calculate x position of the wall obstacle
+        var ix
+        switch(beginnerBox[i][j]){
+          case 'M0000000':
+            ix = 50;
+            break;
+          case '0M000000':
+            ix = 150;
+            break;
+          case '00M00000':
+            ix = 250;
+            break;
+          case '000M0000':
+            ix = 350;
+            break;
+          case '0000M000':
+            ix = 450;
+            break;
+          case '00000M00':
+            ix = 550;
+            break;
+          case '000000M0':
+            ix = 650;
+            break;
+        } 
+        obj['wall']['ix'].push(ix);
     }
   }
+}
 }
 obj['greenDust']['bpm'] = BPM;
 getNoteTime();
