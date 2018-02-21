@@ -147,34 +147,69 @@ function getNoteTime(){
       if(beginnerBox[i][j].indexOf("1")>=0){
         //calculate y time
         noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
-        obj['greenDust']['iy'].push(noteTime);
         
         //calculate x position
-        var ix
+        var ix = [];
+        var pushCount = 1;
         switch(beginnerBox[i][j]){
           case '10000000':
-            ix = 50;
+            console.log("note1 found");
+            ix.push(50);
             break;
           case '01000000':
-            ix = 150;
+            ix.push(150);
             break;
           case '00100000':
-            ix = 250;
+            ix.push(250);
             break;
           case '00010000':
-            ix = 350;
+            ix.push(350);
             break;
           case '00001000':
-            ix = 450;
+            ix.push(450);
             break;
           case '00000100':
-            ix = 550;
+            ix.push(550);
             break;
           case '00000010':
-            ix = 650;
+            ix.push(650);
+            break;
+          case '11000000':
+            ix.push(50,150);
+            pushCount=2;
+            break; 
+          case '11100000':
+            ix.push(50,150,250);
+            pushCount=3;
+            break;
+          case '11110000':
+            ix.push(50,150,250,350);
+            pushCount=4;
+            break;
+          case '11111000':
+            ix.push(50,150,250,350,450);
+            pushCount=5;
+            break;
+          case '11111100':
+            ix.push(50,150,250,350,450,550);
+            pushCount=6;
+            break;
+          case '11111110':
+            ix.push(50,150,250,350,450,550,650);
+            pushCount=7;
             break;
         } 
-        obj['greenDust']['ix'].push(ix);
+
+        for(k=0; k<ix.length; k++){
+          console.log("xpushed");
+          obj['greenDust']['ix'].push(ix[k]);
+        }
+
+        for(l=0; l<pushCount; l++){
+          console.log('ypushed');
+          obj['greenDust']['iy'].push(noteTime);
+        }
+
       }
         else if(beginnerBox[i][j].indexOf("M")>=0){
         //calculate y time of the Wall obstacle
