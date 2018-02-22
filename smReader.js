@@ -149,11 +149,10 @@ function getNoteTime(){
         noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
         
         //calculate x position
-        var ix = [];
-        var pushCount = 1;
+        let ix = [];
+        let pushCount = 1;
         switch(beginnerBox[i][j]){
           case '10000000':
-            console.log("note1 found");
             ix.push(50);
             break;
           case '01000000':
@@ -201,12 +200,10 @@ function getNoteTime(){
         } 
 
         for(k=0; k<ix.length; k++){
-          console.log("xpushed");
           obj['greenDust']['ix'].push(ix[k]);
         }
 
         for(l=0; l<pushCount; l++){
-          console.log('ypushed');
           obj['greenDust']['iy'].push(noteTime);
         }
 
@@ -214,34 +211,81 @@ function getNoteTime(){
         else if(beginnerBox[i][j].indexOf("M")>=0){
         //calculate y time of the Wall obstacle
         noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
-        obj['wall']['iy'].push(noteTime);
         
         //calculate x position of the wall obstacle
-        var ix
-        switch(beginnerBox[i][j]){
+        let ix = [];
+        let pushCount = 1;
+        let boxLine = beginnerBox[i][j];
+        console.log('Diagnostics= '+ boxLine); 
+        for(p=0; p<boxLine.length; p++){
+          if(boxLine.charAt(p)=="M"){
+            switch(p){
+              case 0: 
+                ix.push(50);
+                break;
+              case 1:
+                ix.push(150);
+                break;
+              case 2:
+                ix.push(250);
+                break;
+              case 3:
+                ix.push(350);
+                break;
+              case 4:
+                ix.push(450);
+                break;
+              case 5:
+                ix.push(550);
+                break;
+              case 6:
+                ix.push(650);
+                break; 
+            }
+          }  
+        }
+        
+        console.log('pushcount= '+ ix.length) 
+        pushCount = ix.length;
+       /* switch(beginnerBox[i][j]){
           case 'M0000000':
-            ix = 50;
+            ix.push(50);
+            pushCount=1;
             break;
           case '0M000000':
-            ix = 150;
+            ix.push(150);
+            pushCount=1;
             break;
           case '00M00000':
-            ix = 250;
+            ix.push(250);
+            pushCount=1;
             break;
           case '000M0000':
-            ix = 350;
+            ix.push(350);
+            pushCount=1;
             break;
           case '0000M000':
-            ix = 450;
+            ix.push(450);
+            pushCount=1;
             break;
           case '00000M00':
-            ix = 550;
+            ix.push(550);
+            pushCount=1;
             break;
           case '000000M0':
-            ix = 650;
+            ix.push(650);
+            pushCount=1;
             break;
-        } 
-        obj['wall']['ix'].push(ix);
+        } */ 
+
+        for(m=0; m<ix.length; m++){
+          obj['wall']['ix'].push(ix[m]);
+        }
+
+        for(n=0; n<pushCount; n++){
+          obj['wall']['iy'].push(noteTime);
+        }
+
     }
   }
 }
