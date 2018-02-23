@@ -151,7 +151,39 @@ function getNoteTime(){
         //calculate x position
         let ix = [];
         let pushCount = 1;
-        switch(beginnerBox[i][j]){
+
+        let boxline = beginnerBox[i][j];
+        for(q=0; q<boxline.length; q++){
+          if(boxline.charAt(q)=="1"){
+            switch(q){
+              case 0: 
+                ix.push(50);
+                break;
+              case 1:
+                ix.push(150);
+                break;
+              case 2:
+                ix.push(250);
+                break;
+              case 3:
+                ix.push(350);
+                break;
+              case 4:
+                ix.push(450);
+                break;
+              case 5:
+                ix.push(550);
+                break;
+              case 6:
+                ix.push(650);
+                break; 
+            }
+          }  
+        }
+        
+        pushCount = ix.length;
+       /* switch(beginnerBox[i][j]){
+       /* switch(beginnerBox[i][j]){
           case '10000000':
             ix.push(50);
             break;
@@ -197,7 +229,7 @@ function getNoteTime(){
             ix.push(50,150,250,350,450,550,650);
             pushCount=7;
             break;
-        } 
+        }*/ 
 
         for(k=0; k<ix.length; k++){
           obj['greenDust']['ix'].push(ix[k]);
@@ -215,10 +247,9 @@ function getNoteTime(){
         //calculate x position of the wall obstacle
         let ix = [];
         let pushCount = 1;
-        let boxLine = beginnerBox[i][j];
-        console.log('Diagnostics= '+ boxLine); 
-        for(p=0; p<boxLine.length; p++){
-          if(boxLine.charAt(p)=="M"){
+        let boxline = beginnerBox[i][j];
+        for(p=0; p<boxline.length; p++){
+          if(boxline.charAt(p)=="M"){
             switch(p){
               case 0: 
                 ix.push(50);
@@ -245,7 +276,6 @@ function getNoteTime(){
           }  
         }
         
-        console.log('pushcount= '+ ix.length) 
         pushCount = ix.length;
        /* switch(beginnerBox[i][j]){
           case 'M0000000':
