@@ -182,55 +182,6 @@ function getNoteTime(){
         }
         
         pushCount = ix.length;
-       /* switch(beginnerBox[i][j]){
-       /* switch(beginnerBox[i][j]){
-          case '10000000':
-            ix.push(50);
-            break;
-          case '01000000':
-            ix.push(150);
-            break;
-          case '00100000':
-            ix.push(250);
-            break;
-          case '00010000':
-            ix.push(350);
-            break;
-          case '00001000':
-            ix.push(450);
-            break;
-          case '00000100':
-            ix.push(550);
-            break;
-          case '00000010':
-            ix.push(650);
-            break;
-          case '11000000':
-            ix.push(50,150);
-            pushCount=2;
-            break; 
-          case '11100000':
-            ix.push(50,150,250);
-            pushCount=3;
-            break;
-          case '11110000':
-            ix.push(50,150,250,350);
-            pushCount=4;
-            break;
-          case '11111000':
-            ix.push(50,150,250,350,450);
-            pushCount=5;
-            break;
-          case '11111100':
-            ix.push(50,150,250,350,450,550);
-            pushCount=6;
-            break;
-          case '11111110':
-            ix.push(50,150,250,350,450,550,650);
-            pushCount=7;
-            break;
-        }*/ 
-
         for(k=0; k<ix.length; k++){
           obj['greenDust']['ix'].push(ix[k]);
         }
@@ -240,7 +191,9 @@ function getNoteTime(){
         }
 
       }
-        else if(beginnerBox[i][j].indexOf("M")>=0){
+       
+
+        if(beginnerBox[i][j].indexOf("M")>=0){
         //calculate y time of the Wall obstacle
         noteTime = (linePos-1)*(measureLength/lineTotal)+(measureNum*measureLength);
         
@@ -277,37 +230,7 @@ function getNoteTime(){
         }
         
         pushCount = ix.length;
-       /* switch(beginnerBox[i][j]){
-          case 'M0000000':
-            ix.push(50);
-            pushCount=1;
-            break;
-          case '0M000000':
-            ix.push(150);
-            pushCount=1;
-            break;
-          case '00M00000':
-            ix.push(250);
-            pushCount=1;
-            break;
-          case '000M0000':
-            ix.push(350);
-            pushCount=1;
-            break;
-          case '0000M000':
-            ix.push(450);
-            pushCount=1;
-            break;
-          case '00000M00':
-            ix.push(550);
-            pushCount=1;
-            break;
-          case '000000M0':
-            ix.push(650);
-            pushCount=1;
-            break;
-        } */ 
-
+      
         for(m=0; m<ix.length; m++){
           obj['wall']['ix'].push(ix[m]);
         }
