@@ -157,25 +157,23 @@ function getNoteTime(){
           if(boxline.charAt(q)=="1"){
             switch(q){
               case 0: 
-                ix.push(50);
+                ix.push(87);
                 break;
               case 1:
-                ix.push(150);
+                ix.push(222);
                 break;
               case 2:
-                ix.push(250);
+                ix.push(359);
                 break;
               case 3:
-                ix.push(350);
+                ix.push(496);
                 break;
               case 4:
-                ix.push(450);
+                ix.push(633);
                 break;
               case 5:
-                ix.push(550);
                 break;
               case 6:
-                ix.push(650);
                 break; 
             }
           }  
