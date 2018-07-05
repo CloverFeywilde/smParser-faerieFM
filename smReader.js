@@ -5,7 +5,8 @@ var obj = {
   greenDust:{
     bpm: BPM,
     name: 'greenDust',
-    quantity: 25,
+    color: 'red',
+    quantity: 50,
     animated: true,
     frames: 3,
     x:[],
@@ -15,7 +16,8 @@ var obj = {
   },
   wall: {
     name: 'wall',
-    quantity: 15,
+    color: 'blue',
+    quantity: 50,
     animated: false,
     frames: undefined,
     x: [],
