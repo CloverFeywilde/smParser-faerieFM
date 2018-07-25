@@ -3,12 +3,12 @@
 //Format for the Output Data
 var obj = {
   greenDust:{
-    bpm: BPM,
     name: 'greenDust',
+    fileName: 'greenDust',
     color: 'red',
     quantity: 50,
-    animated: true,
-    frames: 3,
+    animated: false,
+    frames: undefined,
     x:[],
     y:[],
     ix:[],
@@ -16,6 +16,7 @@ var obj = {
   },
   wall: {
     name: 'wall',
+    fileName: 'wall',
     color: 'blue',
     quantity: 50,
     animated: false,
@@ -24,7 +25,11 @@ var obj = {
     y: [],
     ix: [],
     iy: []
-  }
+  },
+  settings: {
+    name: 'settings',
+    bpm: BPM
+    }
 }
 
 
@@ -205,25 +210,23 @@ function getNoteTime(){
           if(boxline.charAt(p)=="M"){
             switch(p){
               case 0: 
-                ix.push(50);
+                ix.push(87);
                 break;
               case 1:
-                ix.push(150);
+                ix.push(222);
                 break;
               case 2:
-                ix.push(250);
+                ix.push(359);
                 break;
               case 3:
-                ix.push(350);
+                ix.push(496);
                 break;
               case 4:
-                ix.push(450);
+                ix.push(633);
                 break;
               case 5:
-                ix.push(550);
                 break;
               case 6:
-                ix.push(650);
                 break; 
             }
           }  
@@ -243,7 +246,7 @@ function getNoteTime(){
   }
 }
 }
-obj['greenDust']['bpm'] = BPM;
+obj['settings']['bpm'] = BPM;
 getNoteTime();
 console.log(obj);
 
